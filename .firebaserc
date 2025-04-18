@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "ligasys-c78d0"
-  }
+    "default": "laligaiguazu"
+  },
+  "targets": {},
+  "etags": {}
 }
