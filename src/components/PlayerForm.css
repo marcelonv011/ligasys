@@ -1,0 +1,181 @@
+.form-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Secciones del formulario */
+.form-section {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.form-section legend {
+  padding: 0 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+/* Inputs y selects */
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #3498db;
+  outline: none;
+  background-color: #f0f8ff;
+}
+
+/* Fila de selects para mes y año */
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.row select {
+  flex: 1;
+}
+
+/* Card de pago */
+.payment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #fff;
+  border: 1px dashed #aaa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Botones */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-guardar,
+.btn-salir {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.btn-guardar {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-guardar:hover {
+  background-color: #219150;
+}
+
+.btn-salir {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-salir:hover {
+  background-color: #c0392b;
+}
+.form-section {
+  border: none;
+  border-radius: 12px;
+  padding: 25px;
+  background-color: #f0f4f8;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-section legend {
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: #3498db;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.form-section label {
+  font-weight: 500;
+  margin-top: 10px;
+  color: #333;
+  display: block;
+}
+
+.form-section input,
+.form-section select {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.form-section input:focus,
+.form-section select:focus {
+  border-color: #3498db;
+  background-color: #eaf6ff;
+}
+
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .btn-guardar,
+  .btn-salir {
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,156 @@
+/* Container principal del login */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #001F3F, #0074D9);
+  padding: 20px;
+}
+
+/* Tarjeta del login */
+.login-card {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Logo dentro del login */
+.login-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Mensaje de bienvenida */
+.welcome-message {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #0053A0;
+  font-weight: 600;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+/* Título principal */
+.login-title {
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+/* Formulario */
+.login-form .form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+/* Label del formulario */
+.login-form label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+/* Inputs del formulario */
+.login-form input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+/* Efecto al enfocar el input */
+.login-form input:focus {
+  border-color: #0074D9;
+  outline: none;
+}
+
+/* Botón de login */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #0074D9;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover botón */
+.login-button:hover {
+  background-color: #005fa3;
+}
+
+/* Texto de error */
+.error-text {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+/* Animación de bienvenida */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loader animado dentro del botón */
+.loader-button {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 0.8s linear infinite;
+  margin: auto;
+}
+
+/* Animación de rotación del loader */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+  }
+
+  .welcome-message {
+    font-size: 1.1rem;
+  }
+
+  .login-title {
+    font-size: 1.2rem;
+  }
+
+  .login-form input {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .login-button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
