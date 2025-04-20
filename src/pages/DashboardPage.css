@@ -115,6 +115,22 @@ button {
   background-color: #e67e22;
 }
 
+.btn-gastos {
+  background-color: #ffc107;
+  color: #000;
+  padding: 8px 12px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-gastos:hover {
+  background-color: #e0a800;
+}
+
 /* ==================== Filtros ==================== */
 .dashboard-filtros {
   display: flex;

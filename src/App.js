@@ -5,6 +5,8 @@ import PlayerForm from "./components/PlayerForm";
 import { auth } from "./services/firebase";
 import { useEffect, useState } from "react";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import GastosClub from './components/GastosClub';
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -51,6 +53,12 @@ function App() {
               <PlayerForm />
             </ProtectedRoute>
           }
+        />
+        <Route path="/gastos" element={
+            <ProtectedRoute user={user}>
+              <GastosClub />
+            </ProtectedRoute>
+          } 
         />
       </Routes>
     </Router>
