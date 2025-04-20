@@ -14,6 +14,11 @@ import { useNavigate } from "react-router-dom";
 import * as XLSX from "xlsx";
 import "./GastosClub.css";
 
+function getMesActual() {
+  const ahora = new Date();
+  return `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, "0")}`;
+}
+
 const GastosClub = () => {
   const navigate = useNavigate();
 
@@ -25,34 +30,56 @@ const GastosClub = () => {
   const [gastos, setGastos] = useState([]);
   const [mesSeleccionado, setMesSeleccionado] = useState(getMesActual());
   const [editandoId, setEditandoId] = useState(null);
-
-  function getMesActual() {
-    const ahora = new Date();
-    return `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, "0")}`;
-  }
+  const [errores, setErrores] = useState({});
+  const [mensaje, setMensaje] = useState("");
 
   const guardarGasto = async () => {
-    if (!tipo || !monto || !fecha) return alert("Faltan datos");
+    const nuevosErrores = {};
+
+    if (!tipo) nuevosErrores.tipo = true;
+    if (!monto) nuevosErrores.monto = true;
+    if (!fecha) nuevosErrores.fecha = true;
+
+    const montoFloat = parseFloat(monto);
+    if (isNaN(montoFloat) || montoFloat <= 0) nuevosErrores.monto = true;
+
+    const fechaSeleccionada = new Date(fecha);
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    if (fechaSeleccionada > hoy) nuevosErrores.fecha = true;
+
+    setErrores(nuevosErrores);
+
+    if (Object.keys(nuevosErrores).length > 0) {
+      alert("Hay errores en el formulario. Por favor revisa los campos.");
+      return;
+    }
 
     const mes = fecha.slice(0, 7);
     const gastoData = {
       tipo,
       descripcion,
-      monto: parseFloat(monto),
+      monto: montoFloat,
       metodo,
-      fecha: Timestamp.fromDate(new Date(fecha)),
+      fecha: Timestamp.fromDate(fechaSeleccionada),
     };
 
-    if (editandoId) {
-      const ref = doc(db, `gastosClub/${mes}/gastos/${editandoId}`);
-      await updateDoc(ref, gastoData);
-      setEditandoId(null);
-    } else {
-      await addDoc(collection(db, `gastosClub/${mes}/gastos`), gastoData);
-    }
+    try {
+      if (editandoId) {
+        const ref = doc(db, `gastosClub/${mes}/gastos/${editandoId}`);
+        await updateDoc(ref, gastoData);
+        setEditandoId(null);
+      } else {
+        await addDoc(collection(db, `gastosClub/${mes}/gastos`), gastoData);
+      }
 
-    limpiarFormulario();
-    cargarGastos(mesSeleccionado);
+      limpiarFormulario();
+      cargarGastos(mes);
+      setMesSeleccionado(mes);
+    } catch (error) {
+      alert("Hubo un error al guardar el gasto.");
+      console.error(error);
+    }
   };
 
   const cargarGastos = async (mes) => {
@@ -65,6 +92,12 @@ const GastosClub = () => {
       fecha: doc.data().fecha.toDate(),
     }));
     setGastos(datos);
+  };
+
+  const handleRecargar = async () => {
+    await cargarGastos(mesSeleccionado);
+    setMensaje("Gastos actualizados ✅");
+    setTimeout(() => setMensaje(""), 2000);
   };
 
   const eliminarGasto = async (id) => {
@@ -80,6 +113,7 @@ const GastosClub = () => {
     setMetodo(gasto.metodo);
     setFecha(gasto.fecha.toISOString().slice(0, 10));
     setEditandoId(gasto.id);
+    setErrores({});
   };
 
   const limpiarFormulario = () => {
@@ -89,6 +123,7 @@ const GastosClub = () => {
     setMetodo("efectivo");
     setFecha("");
     setEditandoId(null);
+    setErrores({});
   };
 
   const exportarExcel = () => {
@@ -100,7 +135,6 @@ const GastosClub = () => {
       Fecha: g.fecha.toLocaleDateString(),
     }));
 
-    // Agregar fila vacía y luego total
     data.push({});
     data.push({
       Tipo: "",
@@ -143,7 +177,7 @@ const GastosClub = () => {
 
       <div className="formulario">
         <div className="campos">
-          <div className="campo">
+          <div className={`campo ${errores.tipo ? "error" : ""}`}>
             <label>Tipo de gasto</label>
             <input type="text" value={tipo} onChange={(e) => setTipo(e.target.value)} />
           </div>
@@ -151,7 +185,7 @@ const GastosClub = () => {
             <label>Descripción</label>
             <input type="text" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
           </div>
-          <div className="campo">
+          <div className={`campo ${errores.monto ? "error" : ""}`}>
             <label>Monto</label>
             <input type="number" min="0" value={monto} onChange={(e) => setMonto(e.target.value)} />
           </div>
@@ -162,7 +196,7 @@ const GastosClub = () => {
               <option value="transferencia">Transferencia</option>
             </select>
           </div>
-          <div className="campo">
+          <div className={`campo ${errores.fecha ? "error" : ""}`}>
             <label>Fecha</label>
             <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} />
           </div>
@@ -184,12 +218,21 @@ const GastosClub = () => {
         <div className="filtros">
           <h3>📅 Gastos del mes</h3>
           <div className="acciones">
-            <input type="month" value={mesSeleccionado} onChange={(e) => setMesSeleccionado(e.target.value)} />
+            <input
+              type="month"
+              value={mesSeleccionado}
+              onChange={(e) => setMesSeleccionado(e.target.value)}
+            />
+            <button onClick={handleRecargar} className="btn recargar">
+              🔄 Recargar
+            </button>
             <button onClick={exportarExcel} className="btn exportar">
               Exportar Excel
             </button>
           </div>
         </div>
+
+        {mensaje && <p className="mensaje-ok">{mensaje}</p>}
 
         {gastos.length === 0 ? (
           <p>No hay gastos registrados para este mes.</p>

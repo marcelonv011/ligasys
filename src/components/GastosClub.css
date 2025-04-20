@@ -23,7 +23,6 @@
     align-items: center;
     gap: 8px;
   }
-  
   .btn.volver:hover {
     background-color: #dfe6e9;
     transform: translateX(-2px);
@@ -81,13 +80,17 @@
     transition: all 0.3s ease;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
   }
-  
   .campo input:focus,
   .campo select:focus {
     border-color: #5dade2;
     outline: none;
     box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.25);
     background-color: #f9fcff;
+  }
+  .campo.error input,
+  .campo.error select {
+    border: 2px solid red;
+    background-color: #ffe5e5;
   }
   
   .botones {
@@ -107,7 +110,6 @@
     transition: all 0.2s ease-in-out;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
-  
   .btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
@@ -117,16 +119,15 @@
     background-color: #3498db;
     color: #fff;
   }
-  
   .btn.guardar:hover {
     background-color: #2e86c1;
+    animation: pulse 0.3s ease-in-out;
   }
   
   .btn.cancelar {
     background-color: #f0f3f4;
     color: #2c3e50;
   }
-  
   .btn.cancelar:hover {
     background-color: #d5dbdb;
   }
@@ -135,7 +136,6 @@
     background-color: #2ecc71;
     color: white;
   }
-  
   .btn.exportar:hover {
     background-color: #27ae60;
   }
@@ -177,12 +177,15 @@
     justify-content: space-between;
     align-items: flex-start;
     background-color: #fcfcfd;
-    transition: all 0.2s ease;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
   }
-  
   .gasto-item:hover {
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
     transform: scale(1.01);
+  }
+  .gasto-item.reciente {
+    background-color: #f0f9ff;
+    border-color: #85c1e9;
   }
   
   .detalle {
@@ -211,18 +214,30 @@
     padding: 6px 12px;
     border-radius: 8px;
     transition: all 0.2s ease;
+    position: relative;
   }
-  
   .btn-link:hover {
     background-color: #ecf0f1;
   }
-  
   .btn-link.eliminar {
     color: #e74c3c;
   }
-  
   .btn-link.eliminar:hover {
     background-color: #fdecea;
+  }
+  
+  .btn-link:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 2;
   }
   
   .total {
@@ -246,7 +261,6 @@
   .metodo-efectivo .gasto-item {
     border-left: 5px solid #20bf6b;
   }
-  
   .metodo-transferencia .gasto-item {
     border-left: 5px solid #2980b9;
   }
@@ -259,6 +273,46 @@
     color: #636e72;
     border-top: 1px dashed #dcdde1;
     padding-top: 8px;
+  }
+  
+  .btn.recargar {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+  }
+  .btn.recargar:hover {
+    background-color: #ec971f;
+  }
+  .mensaje-ok {
+    background-color: #dff9fb;
+    color: #0984e3;
+    border: 1px solid #a2d2ff;
+    padding: 16px 20px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    font-weight: 600;
+    font-size: 15px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    animation: fadeIn 0.4s ease;
+  }
+  
+  /* Animación suave */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Animación para btn.guardar */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.015); }
+    100% { transform: scale(1); }
   }
   
   /* Responsive para móviles */
