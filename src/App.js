@@ -6,6 +6,7 @@ import { auth } from "./services/firebase";
 import { useEffect, useState } from "react";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import GastosClub from './components/GastosClub';
+import CalendarioPartidos from "./components/CalendarioPartidos";
 
 
 function App() {
@@ -57,6 +58,12 @@ function App() {
         <Route path="/gastos" element={
             <ProtectedRoute user={user}>
               <GastosClub />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path="/calendario" element={
+            <ProtectedRoute user={user}>
+              <CalendarioPartidos />
             </ProtectedRoute>
           } 
         />

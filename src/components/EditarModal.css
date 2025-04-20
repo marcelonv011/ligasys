@@ -1,0 +1,88 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+  
+  .modal-contenido {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .modal-contenido h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .modal-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+  }
+  
+  .btn-cancelar {
+    background-color: #ccc;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-cancelar:hover {
+    background-color: #b0b0b0;
+  }
+  
+  .btn-guardar {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-guardar:hover {
+    background-color: #218838;
+  }
+  
+  /* Responsivo para móviles */
+  @media (max-width: 480px) {
+    .modal-contenido {
+      padding: 20px;
+      border-radius: 14px;
+    }
+  
+    .modal-contenido h3 {
+      font-size: 1.2rem;
+    }
+  
+    .btn-guardar,
+    .btn-cancelar {
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+  }
+  

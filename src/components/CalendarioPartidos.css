@@ -1,0 +1,474 @@
+/* CSS para la vista en PC */
+.calendario-container {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fefefe;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.react-calendar {
+    width: 100%;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.react-calendar__tile {
+    min-height: 100px;
+    overflow-y: auto;
+    word-break: break-word;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.react-calendar__tile--active {
+    background: #3498db !important;
+    color: black !important;
+    font-weight: bold;
+}
+
+.react-calendar__tile:hover {
+    background-color: #eaf6ff;
+}
+
+.react-calendar__tile.has-partidos {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.react-calendar__tile.has-partidos:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background-color: #f0faff;
+    z-index: 3;
+    border-radius: 14px;
+}
+
+.partido-dia,
+.partido-card {
+    background-color: #ffffff;
+    border-left: 5px solid #3498db;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 12px;
+    font-size: 0.9em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.partido-dia:hover,
+.partido-card:hover {
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.info-partido {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.icono-baloncesto,
+.partido-icono {
+    color: #ff8c00;
+    background-color: #fff3e0;
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.partido-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.partido-info .descripcion {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 0.85em;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.etiqueta {
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: white;
+    background-color: #3498db;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.etiqueta.femenino {
+    background-color: #b76bdc;
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-editar,
+.btn-eliminar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 4px;
+    border-radius: 6px;
+    transition: transform 0.2s ease, color 0.3s;
+}
+
+.btn-editar:hover {
+    color: #3498db;
+    transform: scale(1.1);
+}
+
+.btn-eliminar:hover {
+    color: #e74c3c;
+    transform: scale(1.1);
+}
+
+.formulario-partido {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.formulario-partido h3 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 1.4rem;
+}
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 0.95em;
+    transition: border-color 0.2s;
+}
+
+.campo input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.btn-guardar {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-guardar:hover {
+    background-color: #218838;
+}
+
+.btn-ver-mas {
+    margin: 8px 0;
+    background-color: #eaf6ff;
+    color: #2c3e50;
+    border: none;
+    padding: 8px 14px;
+    font-size: 0.85em;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-ver-mas:hover {
+    background-color: #d2ecff;
+    transform: translateY(-1px);
+}
+
+.btn-ver-mas .icono-chevron {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.btn-ver-mas:hover .icono-chevron {
+    transform: translateY(-2px);
+}
+
+/* Botón de volver más moderno y visual */
+.btn.volver {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 32px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn.volver:hover {
+    background-color: #dfe6e9;
+    transform: translateX(-2px);
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 600px) {
+    .calendario-container {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .react-calendar {
+        display: none;
+    }
+
+    .partido-card {
+        padding: 12px;
+        font-size: 1.1em;
+        width: 100%;
+        margin: 5px 0;
+        border-radius: 12px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: transform 0.2s ease;
+    }
+
+    .partido-card:hover {
+        transform: translateY(-3px);
+    }
+
+    .partido-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .partido-info .descripcion,
+    .partido-info .categoria,
+    .partido-info .fecha {
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 1em;
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .partido-info .descripcion {
+        color: #3498db;
+        font-size: 1.2em;
+    }.partido-lista {
+        background: #fdfdfd;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 12px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .partido-lista span {
+        font-size: 1em;
+        color: #2c3e50;
+      }
+      
+      .partido-lista .descripcion::before {
+        content: "Descripción: ";
+        font-weight: 600;
+      }
+      
+      .partido-lista .etiqueta::before {
+        content: "Categoría: ";
+        font-weight: 600;
+      }
+      
+      .partido-lista .fecha::before {
+        content: "Fecha: ";
+        font-weight: 600;
+      }
+      
+      .acciones-movil {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+      
+
+    .partido-info .categoria {
+        color: #b76bdc;
+    }
+
+    .partido-info .fecha {
+        color: #777;
+        font-size: 0.9em;
+    }
+
+    .partido-info .etiqueta {
+        padding: 4px 12px;
+        border-radius: 50px;
+        font-size: 0.85em;
+        font-weight: bold;
+        color: white;
+        background-color: #3498db;
+        text-transform: uppercase;
+        width: fit-content;
+    }
+
+    .acciones {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-start;
+    }
+
+    .btn-editar,
+    .btn-eliminar {
+        font-size: 1.2em;
+        padding: 6px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-editar:hover {
+        color: #3498db;
+        transform: scale(1.1);
+    }
+
+    .btn-eliminar:hover {
+        color: #e74c3c;
+        transform: scale(1.1);
+    }
+
+    .formulario-partido {
+        padding: 18px;
+        margin-top: 20px;
+        background-color: #f9f9f9;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .campo input {
+        font-size: 1em;
+        padding: 10px 14px;
+    }
+
+    .btn-guardar {
+        width: 100%;
+        font-size: 1.1em;
+        padding: 12px;
+    }
+
+    .btn-ver-mas {
+        width: 100%;
+        justify-content: center;
+        font-size: 1em;
+        padding: 12px;
+        margin-top: 10px;
+    }
+
+    .info-partido {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .acciones-movil {
+        margin-top: 8px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .acciones-movil .btn-editar,
+    .acciones-movil .btn-eliminar {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .acciones-movil .btn-editar {
+        background-color: #f0ad4e;
+        color: white;
+    }
+
+    .acciones-movil .btn-eliminar {
+        background-color: #d9534f;
+        color: white;
+    }
+}

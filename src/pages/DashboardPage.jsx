@@ -132,16 +132,20 @@ function Dashboard() {
           <p>Visualiza y gestiona las cuotas mensuales</p>
         </div>
         <div className="header-actions">
-          <button className="btn-agregar" onClick={() => navigate("/nuevo")}>
-            ➕ Nuevo Jugador
-          </button>
-          <button className="btn-gastos" onClick={() => navigate("/gastos")}>
-            💸 Ver Gastos
-          </button>
-          <button className="btn-logout" onClick={handleLogout}>
-            🔒 Cerrar sesión
-          </button>
-        </div>
+  <button className="btn-agregar" onClick={() => navigate("/nuevo")}>
+    ➕ Nuevo Jugador
+  </button>
+  <button className="btn-gastos" onClick={() => navigate("/gastos")}>
+    💸 Ver Gastos
+  </button>
+  <button className="btn-calendario" onClick={() => navigate("/calendario")}>
+    🏀 Ver Calendario
+  </button>
+  <button className="btn-logout" onClick={handleLogout}>
+    🔒 Cerrar sesión
+  </button>
+</div>
+
       </header>
 
       <section className="dashboard-filtros">
