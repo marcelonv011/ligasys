@@ -131,21 +131,20 @@ function Dashboard() {
           <h1>📋 Gestión de Jugadores</h1>
           <p>Visualiza y gestiona las cuotas mensuales</p>
         </div>
-        <div className="header-actions">
-  <button className="btn-agregar" onClick={() => navigate("/nuevo")}>
-    ➕ Nuevo Jugador
-  </button>
-  <button className="btn-gastos" onClick={() => navigate("/gastos")}>
-    💸 Ver Gastos
-  </button>
-  <button className="btn-calendario" onClick={() => navigate("/calendario")}>
-    🏀 Ver Calendario
-  </button>
-  <button className="btn-logout" onClick={handleLogout}>
-    🔒 Cerrar sesión
-  </button>
-</div>
-
+        <div className="btn-group">
+          <button className="btn-agregar btn-uniforme" onClick={() => navigate("/nuevo")}>
+            ➕ Nuevo Jugador
+          </button>
+          <button className="btn-gastos btn-uniforme" onClick={() => navigate("/gastos")}>
+            💸 Ver Gastos
+          </button>
+          <button className="btn-calendario btn-uniforme" onClick={() => navigate("/calendario")}>
+            🏀 Ver Calendario
+          </button>
+          <button className="btn-logout btn-uniforme" onClick={handleLogout}>
+            🔒 Cerrar sesión
+          </button>
+        </div>
       </header>
 
       <section className="dashboard-filtros">
@@ -245,14 +244,14 @@ function Dashboard() {
                 </div>
               )}
 
-              <div className="actions">
-                <button className="btn-editar" onClick={() => navigate(`/editar/${player.id}`)}>
-                  ✏️ Editar
-                </button>
-                <button className="btn-eliminar" onClick={() => handleDeletePlayer(player.id)}>
-                  🗑️ Eliminar
-                </button>
-              </div>
+<div className="actions-inline">
+  <button className="btn-icon editar" onClick={() => navigate(`/editar/${player.id}`)} title="Editar">
+    ✏️
+  </button>
+  <button className="btn-icon eliminar" onClick={() => handleDeletePlayer(player.id)} title="Eliminar">
+    🗑️
+  </button>
+</div>
             </div>
           ))
         )}
