@@ -130,6 +130,24 @@ button {
 .btn-gastos:hover {
   background-color: #e0a800;
 }
+.btn-recargar {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 16px;
+  margin: 10px auto;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  max-width: 400px;
+  display: block;
+}
+
+.btn-recargar:hover {
+  background-color: #e0e0e0;
+}
 
 /* ==================== Filtros ==================== */
 .dashboard-filtros {

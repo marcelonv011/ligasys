@@ -188,6 +188,10 @@ function Dashboard() {
         )}
       </section>
 
+      <button className="btn-recargar" onClick={fetchPlayers}>
+        🔄 Recargar Lista
+      </button>
+
       <section className="dashboard-lista">
         {verSoloNoPagados && monthFilter !== "Todos" && (
           <div className="alerta-no-pagadores">
